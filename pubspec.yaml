@@ -1,0 +1,28 @@
+name: hanyin_printer_fluttify
+description: An `HanYin` Printer Plugin, Powered By `Fluttify` Engine, Which Generates Dart Interface For Native SDK.
+version: 0.0.1
+author: yohom <yohombao@qq.com>
+homepage: https://github.com/fluttify-project/hanyin_printer_fluttify
+
+environment:
+  sdk: ">=2.6.0 <3.0.0"
+  flutter: ">=1.12.13 <2.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  foundation_fluttify: 
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: me.yohom.hanyin_printer_fluttify
+        pluginClass: HanyinPrinterFluttifyPlugin
+      ios:
+        pluginClass: HanyinPrinterFluttifyPlugin

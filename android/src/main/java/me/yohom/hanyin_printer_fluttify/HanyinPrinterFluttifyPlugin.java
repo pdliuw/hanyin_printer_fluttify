@@ -45,10 +45,6 @@ public class HanyinPrinterFluttifyPlugin implements FlutterPlugin, MethodChannel
         handlerMapList.add(SubHandler1.getSubHandler(messenger));
         handlerMapList.add(SubHandler2.getSubHandler(messenger));
         handlerMapList.add(SubHandler3.getSubHandler(messenger));
-        handlerMapList.add(SubHandler4.getSubHandler(messenger));
-        handlerMapList.add(SubHandler5.getSubHandler(messenger));
-        handlerMapList.add(SubHandler6.getSubHandler(messenger));
-        handlerMapList.add(SubHandler7.getSubHandler(messenger));
 
         channel.setMethodCallHandler(plugin);
 
@@ -68,10 +64,6 @@ public class HanyinPrinterFluttifyPlugin implements FlutterPlugin, MethodChannel
         handlerMapList.add(SubHandler1.getSubHandler(messenger));
         handlerMapList.add(SubHandler2.getSubHandler(messenger));
         handlerMapList.add(SubHandler3.getSubHandler(messenger));
-        handlerMapList.add(SubHandler4.getSubHandler(messenger));
-        handlerMapList.add(SubHandler5.getSubHandler(messenger));
-        handlerMapList.add(SubHandler6.getSubHandler(messenger));
-        handlerMapList.add(SubHandler7.getSubHandler(messenger));
 
         channel.setMethodCallHandler(this);
 

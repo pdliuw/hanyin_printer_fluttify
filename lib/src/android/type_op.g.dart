@@ -10,6 +10,8 @@ import 'package:flutter/services.dart';
 import 'package:hanyin_printer_fluttify/src/android/android.export.g.dart';
 import 'package:hanyin_printer_fluttify/src/ios/ios.export.g.dart';
 
+import 'package:foundation_fluttify/foundation_fluttify.dart';
+
 // ignore_for_file: non_constant_identifier_names, camel_case_types, missing_return, unused_import
 extension TypeOpHanyinPrinterFluttifyAndroid on Ref {
   Future<bool> isHPRTAndroidSDKA300_androidsdk_tspl() async {

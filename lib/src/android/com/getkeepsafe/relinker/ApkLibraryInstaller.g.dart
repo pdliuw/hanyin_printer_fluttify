@@ -10,6 +10,8 @@ import 'package:hanyin_printer_fluttify/src/android/android.export.g.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
+import 'package:foundation_fluttify/foundation_fluttify.dart';
+
 class com_getkeepsafe_relinker_ApkLibraryInstaller extends java_lang_Object with com_getkeepsafe_relinker_ReLinker_LibraryInstaller {
   //region constants
   

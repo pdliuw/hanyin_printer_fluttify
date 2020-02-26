@@ -10,6 +10,8 @@ import 'package:hanyin_printer_fluttify/src/android/android.export.g.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
+import 'package:foundation_fluttify/foundation_fluttify.dart';
+
 class PTDispatcher extends NSObject  {
   //region constants
   
@@ -200,7 +202,7 @@ class PTDispatcher extends NSObject  {
     }
   }
   
-  Future<void> scanWiFi(void wifiAllBlock(NSMutableArray printerArray)) async {
+  Future<void> scanWiFi(void wifiAllBlock(PTPrinter printerArray)) async {
     // print log
     if (fluttifyLogEnabled) {
       print('fluttify-dart: PTDispatcher@$refId::scanWiFi([])');
@@ -225,7 +227,7 @@ class PTDispatcher extends NSObject  {
               }
         
               // handle the native call
-              wifiAllBlock(unknown()..refId = (args['printerArray'])..tag = 'hanyin_printer_fluttify');
+              wifiAllBlock(PTPrinter()..refId = (args['printerArray'])..tag = 'hanyin_printer_fluttify');
               break;
             default:
               break;
@@ -241,7 +243,7 @@ class PTDispatcher extends NSObject  {
     }
   }
   
-  Future<void> whenFindAllBluetooth(void bluetoothBlock(NSMutableArray printerArray)) async {
+  Future<void> whenFindAllBluetooth(void bluetoothBlock(PTPrinter printerArray)) async {
     // print log
     if (fluttifyLogEnabled) {
       print('fluttify-dart: PTDispatcher@$refId::whenFindAllBluetooth([])');
@@ -266,7 +268,7 @@ class PTDispatcher extends NSObject  {
               }
         
               // handle the native call
-              bluetoothBlock(unknown()..refId = (args['printerArray'])..tag = 'hanyin_printer_fluttify');
+              bluetoothBlock(PTPrinter()..refId = (args['printerArray'])..tag = 'hanyin_printer_fluttify');
               break;
             default:
               break;
@@ -780,7 +782,7 @@ class PTDispatcher extends NSObject  {
     }
   }
   
-  Future<void> setupPeripheralFilter(BOOL block(CBPeripheral peripheral, Map<String, NSObject> advertisementData, NSNumber RSSI)) async {
+  Future<void> setupPeripheralFilter(BOOL block(CBPeripheral peripheral, NSString*,id advertisementData, NSNumber RSSI)) async {
     // print log
     if (fluttifyLogEnabled) {
       print('fluttify-dart: PTDispatcher@$refId::setupPeripheralFilter([])');

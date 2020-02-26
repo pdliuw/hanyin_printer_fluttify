@@ -10,6 +10,8 @@ import 'package:hanyin_printer_fluttify/src/android/android.export.g.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
+import 'package:foundation_fluttify/foundation_fluttify.dart';
+
 class HPRTAndroidSDKA300_HPRTPrinterHelper extends java_lang_Object with java_io_Serializable {
   //region constants
   static final int PAGE_STYPE_RECEIPT = 48;

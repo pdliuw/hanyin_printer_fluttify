@@ -202,7 +202,7 @@ class PTDispatcher extends NSObject  {
     }
   }
   
-  Future<void> scanWiFi(void wifiAllBlock(PTPrinter printerArray)) async {
+  Future<void> scanWiFi(void wifiAllBlock(List<PTPrinter> printerArray)) async {
     // print log
     if (fluttifyLogEnabled) {
       print('fluttify-dart: PTDispatcher@$refId::scanWiFi([])');
@@ -227,7 +227,7 @@ class PTDispatcher extends NSObject  {
               }
         
               // handle the native call
-              wifiAllBlock(PTPrinter()..refId = (args['printerArray'])..tag = 'hanyin_printer_fluttify');
+              wifiAllBlock((args['printerArray'] as List).cast<int>().map((it) => PTPrinter()..refId = it..tag = 'hanyin_printer_fluttify').toList());
               break;
             default:
               break;
@@ -243,7 +243,7 @@ class PTDispatcher extends NSObject  {
     }
   }
   
-  Future<void> whenFindAllBluetooth(void bluetoothBlock(PTPrinter printerArray)) async {
+  Future<void> whenFindAllBluetooth(void bluetoothBlock(List<PTPrinter> printerArray)) async {
     // print log
     if (fluttifyLogEnabled) {
       print('fluttify-dart: PTDispatcher@$refId::whenFindAllBluetooth([])');
@@ -268,7 +268,7 @@ class PTDispatcher extends NSObject  {
               }
         
               // handle the native call
-              bluetoothBlock(PTPrinter()..refId = (args['printerArray'])..tag = 'hanyin_printer_fluttify');
+              bluetoothBlock((args['printerArray'] as List).cast<int>().map((it) => PTPrinter()..refId = it..tag = 'hanyin_printer_fluttify').toList());
               break;
             default:
               break;
@@ -782,7 +782,7 @@ class PTDispatcher extends NSObject  {
     }
   }
   
-  Future<void> setupPeripheralFilter(BOOL block(CBPeripheral peripheral, NSString*,id advertisementData, NSNumber RSSI)) async {
+  Future<void> setupPeripheralFilter(BOOL block(CBPeripheral peripheral, Map<String, NSObject> advertisementData, NSNumber RSSI)) async {
     // print log
     if (fluttifyLogEnabled) {
       print('fluttify-dart: PTDispatcher@$refId::setupPeripheralFilter([])');

@@ -13397,7 +13397,7 @@ extern BOOL enableLog;
           }
       
           // invoke native method
-          [ref scanWiFi : ^(PTPrinter* printerArray) {
+          [ref scanWiFi : ^(NSArray<PTPrinter*>* printerArray) {
               FlutterMethodChannel *channel = [FlutterMethodChannel
                   methodChannelWithName:@"PTDispatcher::scanWiFi::Callback"
                         binaryMessenger:[self->_registrar messenger]];
@@ -13408,9 +13408,15 @@ extern BOOL enableLog;
               }
       
               // 构造可以直接传输的参数
-              // ref callback arg
-              NSNumber* argprinterArray = @(printerArray.hash);
-              HEAP[argprinterArray] = printerArray;
+              // list callback arg
+              NSMutableArray<NSNumber*>* argprinterArray = [NSMutableArray arrayWithCapacity:printerArray.count];
+              for (int i = 0; i < printerArray.count; i++) {
+                  NSObject* item = ((NSObject*) [printerArray objectAtIndex:i]);
+                  // return to dart side data
+                  argprinterArray[i] = @(item.hash);
+                  // add to HEAP
+                  HEAP[@(item.hash)] = item;
+              }
       
               [channel invokeMethod:@"Callback::PTPrinterMutableArrayBlock::PTPrinterMutableArrayBlock" arguments:@{@"printerArray": argprinterArray}];
       
@@ -13435,7 +13441,7 @@ extern BOOL enableLog;
           }
       
           // invoke native method
-          [ref whenFindAllBluetooth : ^(PTPrinter* printerArray) {
+          [ref whenFindAllBluetooth : ^(NSArray<PTPrinter*>* printerArray) {
               FlutterMethodChannel *channel = [FlutterMethodChannel
                   methodChannelWithName:@"PTDispatcher::whenFindAllBluetooth::Callback"
                         binaryMessenger:[self->_registrar messenger]];
@@ -13446,9 +13452,15 @@ extern BOOL enableLog;
               }
       
               // 构造可以直接传输的参数
-              // ref callback arg
-              NSNumber* argprinterArray = @(printerArray.hash);
-              HEAP[argprinterArray] = printerArray;
+              // list callback arg
+              NSMutableArray<NSNumber*>* argprinterArray = [NSMutableArray arrayWithCapacity:printerArray.count];
+              for (int i = 0; i < printerArray.count; i++) {
+                  NSObject* item = ((NSObject*) [printerArray objectAtIndex:i]);
+                  // return to dart side data
+                  argprinterArray[i] = @(item.hash);
+                  // add to HEAP
+                  HEAP[@(item.hash)] = item;
+              }
       
               [channel invokeMethod:@"Callback::PTPrinterMutableArrayBlock::PTPrinterMutableArrayBlock" arguments:@{@"printerArray": argprinterArray}];
       
@@ -13937,7 +13949,7 @@ extern BOOL enableLog;
           }
       
           // invoke native method
-          [ref setupPeripheralFilter : ^(CBPeripheral* peripheral, NSString*,id* advertisementData, NSNumber* RSSI) {
+          [ref setupPeripheralFilter : ^(CBPeripheral* peripheral, NSDictionary<NSString*,id>* advertisementData, NSNumber* RSSI) {
               FlutterMethodChannel *channel = [FlutterMethodChannel
                   methodChannelWithName:@"PTDispatcher::setupPeripheralFilter::Callback"
                         binaryMessenger:[self->_registrar messenger]];
@@ -29386,6 +29398,28 @@ extern BOOL enableLog;
           methodResult(jsonableResult);
       },
       
+      @"PTCommandESC::get_cmdQueue": ^(NSObject <FlutterPluginRegistrar> * registrar, id args, FlutterResult methodResult) {
+          // print log
+          if (enableLog) {
+              NSLog(@"PTCommandESC::get_cmdQueue");
+          }
+      
+          // ref object
+          PTCommandESC* ref = (PTCommandESC*) HEAP[(NSNumber*) ((NSDictionary<NSString*, NSObject*>*) args)[@"refId"]];
+      
+          NSMutableArray* result = ref.cmdQueue;
+      
+          // 返回值: 列表
+          NSMutableArray* jsonableResult = [NSMutableArray array];
+          for (int i = 0; i < result.count; i++) {
+              NSObject* object = [result objectAtIndex:i];
+              [jsonableResult addObject: @(object.hash)];
+              HEAP[@([object hash])] = object;
+          }
+      
+          methodResult(jsonableResult);
+      },
+      
       @"PTLabel::get_express_company": ^(NSObject <FlutterPluginRegistrar> * registrar, id args, FlutterResult methodResult) {
           // print log
           if (enableLog) {
@@ -30053,6 +30087,31 @@ extern BOOL enableLog;
       
               // 返回值: jsonable
               id jsonableResult = result;
+      
+              [resultList addObject:jsonableResult];
+          }
+      
+          methodResult(resultList);
+      },
+      
+      @"PTCommandESC::get_cmdQueue_batch": ^(NSObject <FlutterPluginRegistrar>* registrar, id argsBatch, FlutterResult methodResult) {
+          NSMutableArray* resultList = [NSMutableArray array];
+      
+          for (int i = 0; i < ((NSArray<NSDictionary<NSString*, NSObject*>*>*) argsBatch).count; i++) {
+              NSDictionary<NSString*, id>* args = [((NSArray<NSDictionary<NSString*, id>*>*) argsBatch) objectAtIndex:i];
+      
+              // ref object
+              PTCommandESC* ref = (PTCommandESC*) HEAP[(NSNumber*) ((NSDictionary<NSString*, NSObject*>*) args)[@"refId"]];
+      
+              NSMutableArray* result = ref.cmdQueue;
+      
+              // 返回值: 列表
+              NSMutableArray* jsonableResult = [NSMutableArray array];
+              for (int i = 0; i < result.count; i++) {
+                  NSObject* object = [result objectAtIndex:i];
+                  [jsonableResult addObject: @(object.hash)];
+                  HEAP[@([object hash])] = object;
+              }
       
               [resultList addObject:jsonableResult];
           }
@@ -30791,6 +30850,28 @@ extern BOOL enableLog;
           PTRouter* ref = (PTRouter*) HEAP[(NSNumber*) ((NSDictionary<NSString*, NSObject*>*) args)[@"refId"]];
       
           ref.SSIDDATA = SSIDDATA;
+          methodResult(@"success");
+      },
+      
+      @"PTCommandESC::set_cmdQueue": ^(NSObject <FlutterPluginRegistrar> * registrar, id args, FlutterResult methodResult) {
+          // print log
+          if (enableLog) {
+              NSLog(@"PTCommandESC::set_cmdQueue");
+          }
+      
+          // args
+          // list arg
+          NSArray<NSNumber*>* cmdQueueRefArray = (NSArray<NSNumber*> *) args[@"cmdQueue"];
+          NSMutableArray<NSMutableArray*>* cmdQueue = [NSMutableArray arrayWithCapacity:cmdQueueRefArray.count];
+          for (int i = 0; i < cmdQueueRefArray.count; i++) {
+              NSMutableArray* item = (NSMutableArray*) HEAP[[cmdQueueRefArray objectAtIndex:i]];
+              [cmdQueue addObject:item];
+          }
+      
+          // ref
+          PTCommandESC* ref = (PTCommandESC*) HEAP[(NSNumber*) ((NSDictionary<NSString*, NSObject*>*) args)[@"refId"]];
+      
+          ref.cmdQueue = cmdQueue;
           methodResult(@"success");
       },
       

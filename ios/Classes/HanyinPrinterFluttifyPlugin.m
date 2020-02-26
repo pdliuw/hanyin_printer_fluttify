@@ -13534,9 +13534,8 @@ extern BOOL enableLog;
               }
       
               // 构造可以直接传输的参数
-              // ref callback arg
-              NSNumber* argnumber = @(number.hash);
-              HEAP[argnumber] = number;
+              // jsonable callback arg
+              NSNumber* argnumber = number;
       
               [channel invokeMethod:@"Callback::PTNumberParameterBlock::PTNumberParameterBlock" arguments:@{@"number": argnumber}];
       
@@ -13689,9 +13688,8 @@ extern BOOL enableLog;
               }
       
               // 构造可以直接传输的参数
-              // ref callback arg
-              NSNumber* argnumber = @(number.hash);
-              HEAP[argnumber] = number;
+              // jsonable callback arg
+              NSNumber* argnumber = number;
               // primitive callback arg
               NSNumber* argisActive = @(isActive);
       
@@ -13804,9 +13802,8 @@ extern BOOL enableLog;
               }
       
               // 构造可以直接传输的参数
-              // ref callback arg
-              NSNumber* argnumber = @(number.hash);
-              HEAP[argnumber] = number;
+              // jsonable callback arg
+              NSNumber* argnumber = number;
       
               [channel invokeMethod:@"Callback::PTNumberParameterBlock::PTNumberParameterBlock" arguments:@{@"number": argnumber}];
       
@@ -13929,53 +13926,6 @@ extern BOOL enableLog;
       
           // invoke native method
           [ref setupBleConnectTimeout : timeout];
-      
-          // result
-          // 无返回值
-          NSString* jsonableResult = @"success";
-      
-          methodResult(jsonableResult);
-      },
-      @"PTDispatcher::setupPeripheralFilter": ^(NSObject <FlutterPluginRegistrar> * registrar, id args, FlutterResult methodResult) {
-          // args
-      
-      
-          // ref
-          PTDispatcher* ref = (PTDispatcher*) HEAP[(NSNumber*) ((NSDictionary<NSString*, NSObject*>*) args)[@"refId"]];
-      
-          // print log
-          if (enableLog) {
-              NSLog(@"fluttify-objc: PTDispatcher@%@::setupPeripheralFilter(暂未实现参数打印)", args[@"refId"]);
-          }
-      
-          // invoke native method
-          [ref setupPeripheralFilter : ^(CBPeripheral* peripheral, NSDictionary<NSString*,id>* advertisementData, NSNumber* RSSI) {
-              FlutterMethodChannel *channel = [FlutterMethodChannel
-                  methodChannelWithName:@"PTDispatcher::setupPeripheralFilter::Callback"
-                        binaryMessenger:[self->_registrar messenger]];
-      
-              // print log
-              if (enableLog) {
-                  NSLog(@"");
-              }
-      
-              // 构造可以直接传输的参数
-      
-      
-              [channel invokeMethod:@"Callback::PTPeripheralFilterBlock::PTPeripheralFilterBlock"
-                          arguments:@{}
-                             result:^(id result) {}]; // 由于结果是异步返回, 这里用不上, 所以就不生成代码了
-      
-              // 由于flutter无法同步调用method channel, 所以暂不支持有返回值的回调方法
-              // 相关issue https://github.com/flutter/flutter/issues/28310
-              NSLog(@"暂不支持有返回值的回调方法");
-      
-              ////////////////////////////如果需要手写代码, 请写在这里/////////////////////////////
-      
-              ////////////////////////////////////////////////////////////////////////////////
-      
-              return NO;
-          }];
       
           // result
           // 无返回值
@@ -29880,6 +29830,57 @@ extern BOOL enableLog;
           methodResult(jsonableResult);
       },
       
+      @"PTPrinter::get_rssi": ^(NSObject <FlutterPluginRegistrar> * registrar, id args, FlutterResult methodResult) {
+          // print log
+          if (enableLog) {
+              NSLog(@"PTPrinter::get_rssi");
+          }
+      
+          // ref object
+          PTPrinter* ref = (PTPrinter*) HEAP[(NSNumber*) ((NSDictionary<NSString*, NSObject*>*) args)[@"refId"]];
+      
+          NSNumber* result = ref.rssi;
+      
+          // 返回值: jsonable
+          id jsonableResult = result;
+      
+          methodResult(jsonableResult);
+      },
+      
+      @"PTPrinter::get_strength": ^(NSObject <FlutterPluginRegistrar> * registrar, id args, FlutterResult methodResult) {
+          // print log
+          if (enableLog) {
+              NSLog(@"PTPrinter::get_strength");
+          }
+      
+          // ref object
+          PTPrinter* ref = (PTPrinter*) HEAP[(NSNumber*) ((NSDictionary<NSString*, NSObject*>*) args)[@"refId"]];
+      
+          NSNumber* result = ref.strength;
+      
+          // 返回值: jsonable
+          id jsonableResult = result;
+      
+          methodResult(jsonableResult);
+      },
+      
+      @"PTPrinter::get_distance": ^(NSObject <FlutterPluginRegistrar> * registrar, id args, FlutterResult methodResult) {
+          // print log
+          if (enableLog) {
+              NSLog(@"PTPrinter::get_distance");
+          }
+      
+          // ref object
+          PTPrinter* ref = (PTPrinter*) HEAP[(NSNumber*) ((NSDictionary<NSString*, NSObject*>*) args)[@"refId"]];
+      
+          NSNumber* result = ref.distance;
+      
+          // 返回值: jsonable
+          id jsonableResult = result;
+      
+          methodResult(jsonableResult);
+      },
+      
       @"PTPrinter::get_ip": ^(NSObject <FlutterPluginRegistrar> * registrar, id args, FlutterResult methodResult) {
           // print log
           if (enableLog) {
@@ -30660,6 +30661,66 @@ extern BOOL enableLog;
           methodResult(resultList);
       },
       
+      @"PTPrinter::get_rssi_batch": ^(NSObject <FlutterPluginRegistrar>* registrar, id argsBatch, FlutterResult methodResult) {
+          NSMutableArray* resultList = [NSMutableArray array];
+      
+          for (int i = 0; i < ((NSArray<NSDictionary<NSString*, NSObject*>*>*) argsBatch).count; i++) {
+              NSDictionary<NSString*, id>* args = [((NSArray<NSDictionary<NSString*, id>*>*) argsBatch) objectAtIndex:i];
+      
+              // ref object
+              PTPrinter* ref = (PTPrinter*) HEAP[(NSNumber*) ((NSDictionary<NSString*, NSObject*>*) args)[@"refId"]];
+      
+              NSNumber* result = ref.rssi;
+      
+              // 返回值: jsonable
+              id jsonableResult = result;
+      
+              [resultList addObject:jsonableResult];
+          }
+      
+          methodResult(resultList);
+      },
+      
+      @"PTPrinter::get_strength_batch": ^(NSObject <FlutterPluginRegistrar>* registrar, id argsBatch, FlutterResult methodResult) {
+          NSMutableArray* resultList = [NSMutableArray array];
+      
+          for (int i = 0; i < ((NSArray<NSDictionary<NSString*, NSObject*>*>*) argsBatch).count; i++) {
+              NSDictionary<NSString*, id>* args = [((NSArray<NSDictionary<NSString*, id>*>*) argsBatch) objectAtIndex:i];
+      
+              // ref object
+              PTPrinter* ref = (PTPrinter*) HEAP[(NSNumber*) ((NSDictionary<NSString*, NSObject*>*) args)[@"refId"]];
+      
+              NSNumber* result = ref.strength;
+      
+              // 返回值: jsonable
+              id jsonableResult = result;
+      
+              [resultList addObject:jsonableResult];
+          }
+      
+          methodResult(resultList);
+      },
+      
+      @"PTPrinter::get_distance_batch": ^(NSObject <FlutterPluginRegistrar>* registrar, id argsBatch, FlutterResult methodResult) {
+          NSMutableArray* resultList = [NSMutableArray array];
+      
+          for (int i = 0; i < ((NSArray<NSDictionary<NSString*, NSObject*>*>*) argsBatch).count; i++) {
+              NSDictionary<NSString*, id>* args = [((NSArray<NSDictionary<NSString*, id>*>*) argsBatch) objectAtIndex:i];
+      
+              // ref object
+              PTPrinter* ref = (PTPrinter*) HEAP[(NSNumber*) ((NSDictionary<NSString*, NSObject*>*) args)[@"refId"]];
+      
+              NSNumber* result = ref.distance;
+      
+              // 返回值: jsonable
+              id jsonableResult = result;
+      
+              [resultList addObject:jsonableResult];
+          }
+      
+          methodResult(resultList);
+      },
+      
       @"PTPrinter::get_ip_batch": ^(NSObject <FlutterPluginRegistrar>* registrar, id argsBatch, FlutterResult methodResult) {
           NSMutableArray* resultList = [NSMutableArray array];
       
@@ -31331,6 +31392,57 @@ extern BOOL enableLog;
           PTPrinter* ref = (PTPrinter*) HEAP[(NSNumber*) ((NSDictionary<NSString*, NSObject*>*) args)[@"refId"]];
       
           ref.uuid = uuid;
+          methodResult(@"success");
+      },
+      
+      @"PTPrinter::set_rssi": ^(NSObject <FlutterPluginRegistrar> * registrar, id args, FlutterResult methodResult) {
+          // print log
+          if (enableLog) {
+              NSLog(@"PTPrinter::set_rssi");
+          }
+      
+          // args
+          // jsonable arg
+          NSNumber* rssi = (NSNumber*) args[@"rssi"];
+      
+          // ref
+          PTPrinter* ref = (PTPrinter*) HEAP[(NSNumber*) ((NSDictionary<NSString*, NSObject*>*) args)[@"refId"]];
+      
+          ref.rssi = rssi;
+          methodResult(@"success");
+      },
+      
+      @"PTPrinter::set_strength": ^(NSObject <FlutterPluginRegistrar> * registrar, id args, FlutterResult methodResult) {
+          // print log
+          if (enableLog) {
+              NSLog(@"PTPrinter::set_strength");
+          }
+      
+          // args
+          // jsonable arg
+          NSNumber* strength = (NSNumber*) args[@"strength"];
+      
+          // ref
+          PTPrinter* ref = (PTPrinter*) HEAP[(NSNumber*) ((NSDictionary<NSString*, NSObject*>*) args)[@"refId"]];
+      
+          ref.strength = strength;
+          methodResult(@"success");
+      },
+      
+      @"PTPrinter::set_distance": ^(NSObject <FlutterPluginRegistrar> * registrar, id args, FlutterResult methodResult) {
+          // print log
+          if (enableLog) {
+              NSLog(@"PTPrinter::set_distance");
+          }
+      
+          // args
+          // jsonable arg
+          NSNumber* distance = (NSNumber*) args[@"distance"];
+      
+          // ref
+          PTPrinter* ref = (PTPrinter*) HEAP[(NSNumber*) ((NSDictionary<NSString*, NSObject*>*) args)[@"refId"]];
+      
+          ref.distance = distance;
           methodResult(@"success");
       },
       

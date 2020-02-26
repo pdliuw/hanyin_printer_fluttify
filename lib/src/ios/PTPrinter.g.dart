@@ -64,6 +64,24 @@ class PTPrinter extends NSObject with NSCoding {
     return result;
   }
   
+  Future<num> get_rssi() async {
+    final result = await MethodChannel('me.yohom/hanyin_printer_fluttify').invokeMethod("PTPrinter::get_rssi", {'refId': refId});
+  
+    return result;
+  }
+  
+  Future<num> get_strength() async {
+    final result = await MethodChannel('me.yohom/hanyin_printer_fluttify').invokeMethod("PTPrinter::get_strength", {'refId': refId});
+  
+    return result;
+  }
+  
+  Future<num> get_distance() async {
+    final result = await MethodChannel('me.yohom/hanyin_printer_fluttify').invokeMethod("PTPrinter::get_distance", {'refId': refId});
+  
+    return result;
+  }
+  
   Future<String> get_ip() async {
     final result = await MethodChannel('me.yohom/hanyin_printer_fluttify').invokeMethod("PTPrinter::get_ip", {'refId': refId});
   
@@ -99,6 +117,24 @@ class PTPrinter extends NSObject with NSCoding {
   
   Future<void> set_uuid(String uuid) async {
     await MethodChannel('me.yohom/hanyin_printer_fluttify').invokeMethod('PTPrinter::set_uuid', {'refId': refId, "uuid": uuid});
+  
+  
+  }
+  
+  Future<void> set_rssi(num rssi) async {
+    await MethodChannel('me.yohom/hanyin_printer_fluttify').invokeMethod('PTPrinter::set_rssi', {'refId': refId, "rssi": rssi});
+  
+  
+  }
+  
+  Future<void> set_strength(num strength) async {
+    await MethodChannel('me.yohom/hanyin_printer_fluttify').invokeMethod('PTPrinter::set_strength', {'refId': refId, "strength": strength});
+  
+  
+  }
+  
+  Future<void> set_distance(num distance) async {
+    await MethodChannel('me.yohom/hanyin_printer_fluttify').invokeMethod('PTPrinter::set_distance', {'refId': refId, "distance": distance});
   
   
   }
@@ -147,6 +183,27 @@ extension PTPrinter_Batch on List<PTPrinter> {
   
   Future<List<String>> get_uuid_batch() async {
     final resultBatch = await MethodChannel('me.yohom/hanyin_printer_fluttify').invokeMethod("PTPrinter::get_uuid_batch", [for (final item in this) {'refId': item.refId}]);
+    final typedResult = (resultBatch as List).map((result) => result).toList();
+  
+    return typedResult;
+  }
+  
+  Future<List<num>> get_rssi_batch() async {
+    final resultBatch = await MethodChannel('me.yohom/hanyin_printer_fluttify').invokeMethod("PTPrinter::get_rssi_batch", [for (final item in this) {'refId': item.refId}]);
+    final typedResult = (resultBatch as List).map((result) => result).toList();
+  
+    return typedResult;
+  }
+  
+  Future<List<num>> get_strength_batch() async {
+    final resultBatch = await MethodChannel('me.yohom/hanyin_printer_fluttify').invokeMethod("PTPrinter::get_strength_batch", [for (final item in this) {'refId': item.refId}]);
+    final typedResult = (resultBatch as List).map((result) => result).toList();
+  
+    return typedResult;
+  }
+  
+  Future<List<num>> get_distance_batch() async {
+    final resultBatch = await MethodChannel('me.yohom/hanyin_printer_fluttify').invokeMethod("PTPrinter::get_distance_batch", [for (final item in this) {'refId': item.refId}]);
     final typedResult = (resultBatch as List).map((result) => result).toList();
   
     return typedResult;

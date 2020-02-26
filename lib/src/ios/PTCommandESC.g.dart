@@ -40,7 +40,7 @@ class PTCommandESC extends NSObject  {
   //endregion
 
   //region getters
-  Future<NSMutableArray> get_cmdQueue() async {
+  Future<List> get_cmdQueue() async {
     final result = await MethodChannel('me.yohom/hanyin_printer_fluttify').invokeMethod("PTCommandESC::get_cmdQueue", {'refId': refId});
     kNativeObjectPool.addAll((result as List).cast<int>().map((it) => NSObject()..refId = it..tag = 'hanyin_printer_fluttify').toList());
     return (result as List).cast<int>().map((it) => NSObject()..refId = it..tag = 'hanyin_printer_fluttify').toList();
@@ -49,7 +49,7 @@ class PTCommandESC extends NSObject  {
   //endregion
 
   //region setters
-  Future<void> set_cmdQueue(NSMutableArray cmdQueue) async {
+  Future<void> set_cmdQueue(List cmdQueue) async {
     await MethodChannel('me.yohom/hanyin_printer_fluttify').invokeMethod('PTCommandESC::set_cmdQueue', {'refId': refId, "cmdQueue": cmdQueue.map((it) => it.refId).toList()});
   
   
@@ -4441,7 +4441,7 @@ class PTCommandESC extends NSObject  {
 
 extension PTCommandESC_Batch on List<PTCommandESC> {
   //region getters
-  Future<List<NSMutableArray>> get_cmdQueue_batch() async {
+  Future<List<List>> get_cmdQueue_batch() async {
     final resultBatch = await MethodChannel('me.yohom/hanyin_printer_fluttify').invokeMethod("PTCommandESC::get_cmdQueue_batch", [for (final item in this) {'refId': item.refId}]);
     final typedResult = (resultBatch as List).map((result) => (result as List).cast<int>().map((it) => NSObject()..refId = it..tag = 'hanyin_printer_fluttify').toList()).toList();
     kNativeObjectPool.addAll(typedResult.expand((e) => e));

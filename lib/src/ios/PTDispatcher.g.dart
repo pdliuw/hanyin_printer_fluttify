@@ -325,7 +325,7 @@ class PTDispatcher extends NSObject  {
     }
   }
   
-  Future<void> whenReadRSSI(void readRSSIBlock(NSNumber number)) async {
+  Future<void> whenReadRSSI(void readRSSIBlock(num number)) async {
     // print log
     if (fluttifyLogEnabled) {
       print('fluttify-dart: PTDispatcher@$refId::whenReadRSSI([])');
@@ -350,7 +350,7 @@ class PTDispatcher extends NSObject  {
               }
         
               // handle the native call
-              readRSSIBlock(unknown()..refId = (args['number'])..tag = 'hanyin_printer_fluttify');
+              readRSSIBlock(args['number']);
               break;
             default:
               break;
@@ -492,7 +492,7 @@ class PTDispatcher extends NSObject  {
     }
   }
   
-  Future<void> whenUnconnect(void unconnectBlock(NSNumber number, bool isActive)) async {
+  Future<void> whenUnconnect(void unconnectBlock(num number, bool isActive)) async {
     // print log
     if (fluttifyLogEnabled) {
       print('fluttify-dart: PTDispatcher@$refId::whenUnconnect([])');
@@ -517,7 +517,7 @@ class PTDispatcher extends NSObject  {
               }
         
               // handle the native call
-              unconnectBlock(unknown()..refId = (args['number'])..tag = 'hanyin_printer_fluttify', args['isActive']);
+              unconnectBlock(args['number'], args['isActive']);
               break;
             default:
               break;
@@ -533,7 +533,7 @@ class PTDispatcher extends NSObject  {
     }
   }
   
-  Future<void> whenSendSuccess(void sendSuccessBlock(int64_t dataCount, double time)) async {
+  Future<void> whenSendSuccess(void sendSuccessBlock(int dataCount, double time)) async {
     // print log
     if (fluttifyLogEnabled) {
       print('fluttify-dart: PTDispatcher@$refId::whenSendSuccess([])');
@@ -558,7 +558,7 @@ class PTDispatcher extends NSObject  {
               }
         
               // handle the native call
-              sendSuccessBlock(unknown()..refId = (args['dataCount'])..tag = 'hanyin_printer_fluttify', args['time']);
+              sendSuccessBlock(args['dataCount'], args['time']);
               break;
             default:
               break;
@@ -615,7 +615,7 @@ class PTDispatcher extends NSObject  {
     }
   }
   
-  Future<void> whenSendProgressUpdate(void sendProgressBlock(NSNumber number)) async {
+  Future<void> whenSendProgressUpdate(void sendProgressBlock(num number)) async {
     // print log
     if (fluttifyLogEnabled) {
       print('fluttify-dart: PTDispatcher@$refId::whenSendProgressUpdate([])');
@@ -640,7 +640,7 @@ class PTDispatcher extends NSObject  {
               }
         
               // handle the native call
-              sendProgressBlock(unknown()..refId = (args['number'])..tag = 'hanyin_printer_fluttify');
+              sendProgressBlock(args['number']);
               break;
             default:
               break;
@@ -772,47 +772,6 @@ class PTDispatcher extends NSObject  {
   
     // handle native call
   
-  
-    // convert native result to dart side object
-    if (result == null) {
-      return null;
-    } else {
-    
-      return result;
-    }
-  }
-  
-  Future<void> setupPeripheralFilter(BOOL block(CBPeripheral peripheral, Map<String, NSObject> advertisementData, NSNumber RSSI)) async {
-    // print log
-    if (fluttifyLogEnabled) {
-      print('fluttify-dart: PTDispatcher@$refId::setupPeripheralFilter([])');
-    }
-  
-    // invoke native method
-    final result = await MethodChannel('me.yohom/hanyin_printer_fluttify').invokeMethod('PTDispatcher::setupPeripheralFilter', {"refId": refId});
-  
-  
-    // handle native call
-    MethodChannel('PTDispatcher::setupPeripheralFilter::Callback')
-        .setMethodCallHandler((methodCall) async {
-          final args = methodCall.arguments as Map;
-          // final refId = args['callerRefId'] as int;
-          // if (refId != this.refId) return;
-  
-          switch (methodCall.method) {
-            case 'Callback::PTPeripheralFilterBlock::PTPeripheralFilterBlock':
-              // print log
-              if (fluttifyLogEnabled) {
-        
-              }
-        
-              // handle the native call
-              block(unknown()..refId = (args['peripheral'])..tag = 'hanyin_printer_fluttify', unknown()..refId = (args['advertisementData'])..tag = 'hanyin_printer_fluttify', unknown()..refId = (args['RSSI'])..tag = 'hanyin_printer_fluttify');
-              break;
-            default:
-              break;
-          }
-        });
   
     // convert native result to dart side object
     if (result == null) {
